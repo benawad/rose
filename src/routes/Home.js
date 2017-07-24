@@ -1,3 +1,5 @@
 import React from 'react';
 
-export default () => <h1>HOME!</h1>;
+import Board from '../components/Board';
+
+export default () => <Board boardId={1} />;

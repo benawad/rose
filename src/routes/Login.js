@@ -3,12 +3,11 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import { graphql } from 'react-apollo';
 
-import { register } from '../mutations';
+import { login } from '../mutations';
 
-class Register extends React.Component {
+class Login extends React.Component {
   state = {
     fields: {
-      username: '',
       email: '',
       password: '',
     },
@@ -24,25 +23,19 @@ class Register extends React.Component {
   };
 
   onSubmit = async () => {
-    const user = await this.props.mutate({
+    const { data } = await this.props.mutate({
       variables: this.state.fields,
     });
 
-    console.log(user);
+    const { token, refreshToken } = data.login;
+
+    localStorage.setItem('token', token);
+    localStorage.setItem('refreshToken', refreshToken);
   };
 
   render() {
     return (
       <form>
-        <TextField
-          name="username"
-          hintText="Username"
-          floatingLabelText="Username"
-          value={this.state.fields.username}
-          onChange={e => this.onChange(e)}
-          floatingLabelFixed
-        />
-        <br />
         <TextField
           name="email"
           hintText="Email"
@@ -68,4 +61,4 @@ class Register extends React.Component {
   }
 }
 
-export default graphql(register)(Register);
+export default graphql(login)(Login);

@@ -11,6 +11,20 @@ injectTapEventPlugin();
 const networkInterface = createNetworkInterface({
   uri: 'http://localhost:3030/graphql',
 });
+
+networkInterface.use([
+  {
+    applyMiddleware(req, next) {
+      if (!req.options.headers) {
+        req.options.headers = {};
+      }
+      req.options.headers['x-token'] = localStorage.getItem('token');
+      req.options.headers['x-refresh-token'] = localStorage.getItem('refreshToken');
+      next();
+    },
+  },
+]);
+
 const client = new ApolloClient({
   networkInterface,
 });
