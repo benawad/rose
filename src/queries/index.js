@@ -12,3 +12,16 @@ export const getBoard = gql`
     }
   }
 `;
+
+export const allBoardsQuery = gql`
+  {
+    allBoards {
+      id
+      name
+      suggestions {
+        id
+        text
+      }
+    }
+  }
+`;

@@ -4,6 +4,8 @@ import { ApolloProvider, ApolloClient, createNetworkInterface } from 'react-apol
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
+import 'flexboxgrid/dist/flexboxgrid.min.css';
+
 import Routes from './routes';
 
 injectTapEventPlugin();

@@ -31,6 +31,10 @@ class Login extends React.Component {
 
     localStorage.setItem('token', token);
     localStorage.setItem('refreshToken', refreshToken);
+
+    if (token && refreshToken) {
+      this.props.history.push('/');
+    }
   };
 
   render() {
