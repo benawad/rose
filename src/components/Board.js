@@ -31,6 +31,7 @@ class Board extends React.Component {
           __typename: 'Suggestion',
           id: -1,
           text: suggestion,
+          votes: 0,
         },
       },
       update: (store, { data }) => {

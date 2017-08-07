@@ -1,5 +1,7 @@
 import { gql } from 'react-apollo';
 
+import { boardFragment } from '../queries';
+
 export const register = gql`
   mutation($username: String!, $email: String!, $password: String!) {
     register(username: $username, email: $email, password: $password) {
@@ -24,6 +26,7 @@ export const createSuggestion = gql`
     createSuggestion(text: $text, boardId: $boardId) {
       id
       text
+      votes
     }
   }
 `;
@@ -31,12 +34,14 @@ export const createSuggestion = gql`
 export const createBoardMutation = gql`
   mutation($name: String!) {
     createBoard(name: $name) {
-      id
-      name
-      suggestions {
-        id
-        text
-      }
+      ...allBoardFields
     }
+  }
+  ${boardFragment}
+`;
+
+export const voteMutation = gql`
+  mutation($id: Int!) {
+    voteOnSuggestion(id: $id)
   }
 `;
