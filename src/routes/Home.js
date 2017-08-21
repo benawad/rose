@@ -35,7 +35,25 @@ class Home extends React.Component {
   };
 
   componentWillMount() {
-    console.log(this.props);
+    this.props.data.subscribeToMore({
+      document: voteHappened,
+      updateQuery: (prev, { subscriptionData }) => {
+        if (!subscriptionData.data) {
+          return prev;
+        }
+        const { suggestionId, incrementAmount } = subscriptionData.data.voteHappened;
+        return {
+          ...prev,
+          allBoards: prev.allBoards.map(x => ({
+            ...x,
+            suggestions: x.suggestions.map(y => ({
+              ...y,
+              votes: y.id === suggestionId ? y.votes + incrementAmount : y.votes,
+            })),
+          })),
+        };
+      },
+    });
   }
 
   render() {
@@ -61,9 +79,4 @@ class Home extends React.Component {
   }
 }
 
-export default compose(
-  graphql(allBoardsQuery),
-  graphql(voteHappened, {
-    name: 'sub',
-  }),
-)(Home);
+export default compose(graphql(allBoardsQuery))(Home);
