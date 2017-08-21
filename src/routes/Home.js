@@ -1,11 +1,12 @@
 import React from 'react';
-import { graphql } from 'react-apollo';
+import { compose, graphql } from 'react-apollo';
 import _ from 'lodash';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import Board from '../components/Board';
 import CreateBoardDialog from '../components/CreateBoardDialog';
 import { allBoardsQuery } from '../queries';
+import { voteHappened } from '../subscriptions';
 
 // i = 0
 // 0 : i2 = 0
@@ -33,6 +34,10 @@ class Home extends React.Component {
     openDialog: false,
   };
 
+  componentWillMount() {
+    console.log(this.props);
+  }
+
   render() {
     const { data: { allBoards = [] } } = this.props;
     return (
@@ -56,4 +61,9 @@ class Home extends React.Component {
   }
 }
 
-export default graphql(allBoardsQuery)(Home);
+export default compose(
+  graphql(allBoardsQuery),
+  graphql(voteHappened, {
+    name: 'sub',
+  }),
+)(Home);
