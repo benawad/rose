@@ -1,14 +1,17 @@
 # rose
 
-This is a Reactjs frontend for a Trello clone. The branches are sorted in the order they were coded.
+Rose provides a Frontend using the Reactjs framework for a Trello clone.  
+The repository contains branches sorted by the order they were coded.
 
-This project is being live coded on [https://www.twitch.tv/benawad](https://www.twitch.tv/benawad) every Sunday 7pm Central Time.
+## Usage
+The `index.html` provided serves as a template for the project. To begin developing with the project run `npm start` or `yarn start`, and to build a production bundle run `npm run build` or `yarn build`.
 
-[Recordings are up on YouTube](https://www.youtube.com/playlist?list=PLN3n1USn4xlkC8xrNQoB4juXlqhxsx4xU)
+## Media
+Live coding sessions of the rose project take place every Sunday at 7pm Central Time on [https://www.twitch.tv/benawad](https://www.twitch.tv/benawad).
+The live coding sessions can be found in a [YouTube Playlist](https://www.youtube.com/playlist?list=PLN3n1USn4xlkC8xrNQoB4juXlqhxsx4xU).
 
-# Architecture
-
-## Stack
+## Architecture
+### Stack
 
 ### Backend
 * PostgreSQL - database
@@ -16,5 +19,4 @@ This project is being live coded on [https://www.twitch.tv/benawad](https://www.
 * GraphQL - query language 
 
 ### Frontend
-* React
-
+* Reactjs
